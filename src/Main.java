@@ -123,8 +123,28 @@ public class Main {
 
     public static int[] resize(int[] a, int newLength){
         int[] rInts = new int[newLength];
+        for (int i = 0; i < newLength; i++) {
+            if (i>=a.length){
+                rInts[i]=0;
+            }else{
+                rInts[i]=a[i];
+            }
+        }
         return rInts;
     }
 
+    public static int indexOf(int[] a, int n, int pos){
+        int rInt = -1;
+        for (int i = pos; i < a.length; i++) {
+            if(a[i]==n){
+                rInt = i;
+                break;
+            }
+        }
+        return rInt;
+    }
 
+    public static void addNumber(int[] a, int n){
+
+    }
 }
