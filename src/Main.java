@@ -16,7 +16,15 @@ public class Main {
         System.out.println("getMinimum(a) = " + getMinimum(a));
         System.out.println("getMittelwert() = " + getMittelwert(a));
         System.out.println("getSumme(a) = " + getSumme(a));
-
+        System.out.println();
+        int[] aSource = {1, 2, 3};
+        int[] aCopy = copy(aSource);
+        aSource[0] = 99;
+        printArray("aSource: ", aSource);
+        printArray("aCopy : ", aCopy );
+        System.out.println();
+        int[] b = {1, 2, 3, 4, 5, 6, 7, 8, 9,3};
+        System.out.println(indexOf(b,3));
     }
 
     public static int random(int min, int max) {
@@ -62,9 +70,9 @@ public class Main {
 
     public static int getMaximum(int[] a) {
         int rInt = 0;
-        for (int i = 0; i < a.length; i++) {
-            if (a[i] > rInt) {
-                rInt = a[i];
+        for (int j : a) {
+            if (j > rInt) {
+                rInt = j;
             }
         }
         return rInt;
@@ -72,8 +80,10 @@ public class Main {
 
     public static int getMinimum(int[] a) {
         int rInt = getMaximum(a);
-        for (int i = a.length - 1; i >= 0; i++) {
-
+        for (int i = a.length - 1; i >= 0; i--) {
+            if (rInt>a[i]){
+                rInt=a[i];
+            }
         }
         return rInt;
     }
@@ -93,4 +103,28 @@ public class Main {
         }
         return rInt/a.length;
     }
+
+    public static int[] copy(int[] source){
+        int[] rInts = new int[source.length];
+        System.arraycopy(source, 0, rInts, 0, source.length);
+        return rInts;
+    }
+
+    public static int indexOf(int[] a, int n){
+        int rInt = -1;
+        for (int i = 0; i < a.length; i++) {
+            if(a[i]==n){
+                rInt = i;
+                break;
+            }
+        }
+        return rInt;
+    }
+
+    public static int[] resize(int[] a, int newLength){
+        int[] rInts = new int[newLength];
+        return rInts;
+    }
+
+
 }
