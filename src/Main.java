@@ -25,6 +25,8 @@ public class Main {
         System.out.println();
         int[] b = {1, 2, 3, 4, 5, 6, 7, 8, 9,3};
         System.out.println(indexOf(b,3));
+        printArray("resize(a,11)=",resize(a,11));
+        System.out.println("indexOf(b,3,5) = " + indexOf(b, 3, 5));
     }
 
     public static int random(int min, int max) {
@@ -144,7 +146,4 @@ public class Main {
         return rInt;
     }
 
-    public static void addNumber(int[] a, int n){
-
-    }
 }
