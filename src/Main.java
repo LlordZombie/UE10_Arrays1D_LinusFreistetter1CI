@@ -21,12 +21,24 @@ public class Main {
         int[] aCopy = copy(aSource);
         aSource[0] = 99;
         printArray("aSource: ", aSource);
-        printArray("aCopy : ", aCopy );
+        printArray("aCopy : ", aCopy);
         System.out.println();
-        int[] b = {1, 2, 3, 4, 5, 6, 7, 8, 9,3};
-        System.out.println(indexOf(b,3));
-        printArray("resize(a,11)=",resize(a,11));
+        int[] b = {1, 2, 3, 4, 5, 6, 7, 8, 9, 3};
+        System.out.println(indexOf(b, 3));
+        printArray("resize(a,11)=", resize(a, 11));
         System.out.println("indexOf(b,3,5) = " + indexOf(b, 3, 5));
+        int[] a8 = {10, 0, 9};
+        printArray("a8: ", a8); // Ausgabe: a8: {10, 0, 9}
+        addNumber(a8, 100);
+        printArray("a8+100: ", a8);
+        System.out.println();
+        boolean[] c = {true, true, false, true, false, true, true, true};
+        int[] bFalseTrue = countFalseTrue(c);
+        System.out.println("b: " + Arrays.toString(b) + "\nAnzahl der:");
+        System.out.println("false-Werte von b: " + bFalseTrue[0]); // ... false-Werte von b: 2
+        System.out.println("true -Werte von b: " + bFalseTrue[1]); // ... true -Werte von b: 6
+        boolean[] b2 = stringToBooleanArray("I am");
+        System.out.println(Arrays.toString(b2));
     }
 
     public static int random(int min, int max) {
@@ -49,7 +61,7 @@ public class Main {
         for (int i = 0; i < 20; i++) {
             a2[i] = (i + 1) * 5;
         }
-        printArray("a2=",a2);
+        printArray("a2=", a2);
 
         int[] a3 = new int[20];
         for (int i = 0; i < 11; i++) {
@@ -83,8 +95,8 @@ public class Main {
     public static int getMinimum(int[] a) {
         int rInt = getMaximum(a);
         for (int i = a.length - 1; i >= 0; i--) {
-            if (rInt>a[i]){
-                rInt=a[i];
+            if (rInt > a[i]) {
+                rInt = a[i];
             }
         }
         return rInt;
@@ -103,19 +115,19 @@ public class Main {
         for (int i : a) {
             rInt += i;
         }
-        return rInt/a.length;
+        return rInt / a.length;
     }
 
-    public static int[] copy(int[] source){
+    public static int[] copy(int[] source) {
         int[] rInts = new int[source.length];
         System.arraycopy(source, 0, rInts, 0, source.length);
         return rInts;
     }
 
-    public static int indexOf(int[] a, int n){
+    public static int indexOf(int[] a, int n) {
         int rInt = -1;
         for (int i = 0; i < a.length; i++) {
-            if(a[i]==n){
+            if (a[i] == n) {
                 rInt = i;
                 break;
             }
@@ -123,27 +135,69 @@ public class Main {
         return rInt;
     }
 
-    public static int[] resize(int[] a, int newLength){
+    public static int[] resize(int[] a, int newLength) {
         int[] rInts = new int[newLength];
         for (int i = 0; i < newLength; i++) {
-            if (i>=a.length){
-                rInts[i]=0;
-            }else{
-                rInts[i]=a[i];
+            if (i >= a.length) {
+                rInts[i] = 0;
+            } else {
+                rInts[i] = a[i];
             }
         }
         return rInts;
     }
 
-    public static int indexOf(int[] a, int n, int pos){
+    public static int indexOf(int[] a, int n, int pos) {
         int rInt = -1;
         for (int i = pos; i < a.length; i++) {
-            if(a[i]==n){
+            if (a[i] == n) {
                 rInt = i;
                 break;
             }
         }
         return rInt;
+    }
+
+    public static void addNumber(int[] a, int n) {
+        for (int i = 0; i < a.length; i++) {
+            a[i] += n;
+        }
+    }
+
+    public static int[] countFalseTrue(boolean[] b) {
+        int[] rInts = new int[2];
+        for (boolean value : b) {
+            if (value) {
+                rInts[0]++;
+            } else {
+                rInts[1]++;
+            }
+        }
+        return rInts;
+    }
+
+    public static boolean[] stringToBooleanArray(String s) {
+        boolean[] rBoolean = new boolean[s.length()];
+        for (int i = 0; i < s.length(); i++) {
+            if (s.charAt(i) == ' ') {
+                rBoolean[i] = false;
+            } else {
+                rBoolean[i] = true;
+            }
+        }
+        return rBoolean;
+    }
+
+    public static boolean equals(char[] a, char[] b) {
+        if (a.length != b.length) {
+            return false;
+        }
+        for (int i = 0; i < a.length; i++) {
+            if (a[i] != b[i]) {
+                return false;
+            }
+        }
+        return true;
     }
 
 }
