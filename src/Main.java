@@ -39,6 +39,13 @@ public class Main {
         System.out.println("true -Werte von b: " + bFalseTrue[1]); // ... true -Werte von b: 6
         boolean[] b2 = stringToBooleanArray("I am");
         System.out.println(Arrays.toString(b2));
+        int[] a9 = {19, 7, 99, 18};
+        swap(a9, 0, 2);
+        printArray ("a9: ", a9); // Ausgabe: a9: {99, 7, 19, 18}
+        System.out.println();
+        int[] toSort = randomArray(25,100,999);
+        reverseSort(toSort);
+        printArray("tosort:",toSort);
     }
 
     public static int random(int min, int max) {
@@ -179,11 +186,7 @@ public class Main {
     public static boolean[] stringToBooleanArray(String s) {
         boolean[] rBoolean = new boolean[s.length()];
         for (int i = 0; i < s.length(); i++) {
-            if (s.charAt(i) == ' ') {
-                rBoolean[i] = false;
-            } else {
-                rBoolean[i] = true;
-            }
+            rBoolean[i] = s.charAt(i) != ' ';
         }
         return rBoolean;
     }
@@ -200,4 +203,47 @@ public class Main {
         return true;
     }
 
+    public static boolean isRotatable(char[] a, char[] b) {
+        int aLen = a.length;
+        if (aLen != b.length) {
+            return false;
+        }
+
+        FIRST_LOOP:
+        for (int bOffset = 0; bOffset < aLen; bOffset++) {
+            for (int i = 0; i < aLen; i++) {
+                if (a[i] != b[(i+bOffset) % aLen]) {
+                    continue FIRST_LOOP;
+                }
+            }
+            return true;
+        }
+        return false;
+    }
+
+
+    public static void swap(int[] a, int i, int j){
+        int intBeiI = a[i];
+        int intBeiJ = a[j];
+        a[i]= intBeiJ;
+        a[j]= intBeiI;
+    }
+
+    public static int indexOfLargestElement(int[] a, int startPos){
+        int rInt = a[0];
+        for (int i = 0; i < startPos; i++) {
+            if (a[i]>rInt){
+                rInt=a[i];
+            }
+        }
+        return rInt;
+    }
+
+
+    public static void reverseSort(int[] a){
+        Arrays.sort(a);
+        for (int i = 0; i < a.length/2; i++) {
+            swap(a,i,a.length-i-1);
+        }
+    }
 }
