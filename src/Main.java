@@ -41,11 +41,25 @@ public class Main {
         System.out.println(Arrays.toString(b2));
         int[] a9 = {19, 7, 99, 18};
         swap(a9, 0, 2);
-        printArray ("a9: ", a9); // Ausgabe: a9: {99, 7, 19, 18}
+        printArray("a9: ", a9); // Ausgabe: a9: {99, 7, 19, 18}
         System.out.println();
-        int[] toSort = randomArray(25,100,999);
+        int[] toSort = randomArray(25, 100, 999);
         reverseSort(toSort);
-        printArray("tosort:",toSort);
+        printArray("tosort:", toSort);
+        System.out.println();
+        int[] aOriginal = {1, 1, 1, 2, 2, 2, 0};
+        int[] aOhneDoppelte = deleteEquals(aOriginal);
+        printArray("aOhneDoppelte = ", aOhneDoppelte);
+        printArray("getprimes5", getPrimes(5));
+    }
+
+    public static boolean contains(int[] a, int search) {
+        for (int j : a) {
+            if (j == search) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public static int random(int min, int max) {
@@ -53,7 +67,15 @@ public class Main {
     }
 
     public static void printArray(String msg, int[] a) {
-        System.out.println(msg + "{" + Arrays.toString(a).substring(1, Arrays.toString(a).length() - 1) + "}");
+        StringBuilder s = new StringBuilder();
+
+        for (int i = 0; i < a.length; i++) {
+            s.append(a[i]);
+            if (i < a.length - 1) {
+                s.append(", ");
+            }
+        }
+        System.out.println(msg + "{" + s + "}");
     }
 
 
@@ -240,10 +262,80 @@ public class Main {
     }
 
 
-    public static void reverseSort(int[] a){
+    public static void reverseSort(int[] a) {
         Arrays.sort(a);
-        for (int i = 0; i < a.length/2; i++) {
-            swap(a,i,a.length-i-1);
+        for (int i = 0; i < a.length / 2; i++) {
+            swap(a, i, a.length - i - 1);
         }
     }
+
+    public static int[] deleteEquals(int[] a) {
+        int[] rInt = new int[a.length];
+        int counter = 0;
+        for (int j : a) {
+            if (!contains(rInt, j)) {9y
+                rInt[counter] = j;
+                counter++;
+            }
+        }
+        if (contains(a, 0)) {
+            rInt = resize(rInt, counter + 1);
+        } else {
+            rInt = resize(rInt, counter);
+        }
+        return rInt;
+    }
+
+    public static boolean isPrime(int n) {
+        if (n < 2) {
+            return false;
+        }
+        for (int i = 2; i < n; i++) {
+            if (n % i == 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+
+    public static int[] getPrimes(int k) {
+        if (k <= 0) {
+            return new int[]{0};
+        }
+        int[] rInt = new int[k];
+        int counter = 0;
+        for (int i = 0; counter < k; i++) {
+            if (isPrime(i)) {
+                rInt[counter] = i;
+                counter++;
+            }
+        }
+        return rInt;
+    }
+
+    public static int[] getPrimesByBiggest(int k) {
+        if (k <= 0) {
+            return new int[]{0};
+        }
+        int[] rInt = new int[k];
+        int counter = 0;
+        for (int i = 0; i < k; i++) {
+            if (isPrime(i)) {
+                rInt[counter] = i;
+                counter++;
+            }
+        }
+        return rInt;
+    }
+
+  /*  public static int[] getPrimfaktoren(int n){
+        int[] p = getPrimesByBiggest((n/2)+1);
+        int[] rInt = new int[n];
+        int counter
+        for (int i = 0; i < p.length; i++) {
+            if ()
+        }
+    }*/
+
 }
