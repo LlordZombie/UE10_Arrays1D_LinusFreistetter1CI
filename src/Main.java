@@ -51,6 +51,14 @@ public class Main {
         int[] aOhneDoppelte = deleteEquals(aOriginal);
         printArray("aOhneDoppelte = ", aOhneDoppelte);
         printArray("getprimes5", getPrimes(5));
+        System.out.println();
+        printArray("getPrimfaktoren von 2000",getPrimfaktoren(2000));
+        System.out.println();
+        String[] hallo = {"hallo","hallo","hallo","hallo","hallo"};
+        printArray("hallo:",hallo);
+        printArray("countSelbstLuate(: \"BANANEN sind besonders gesund\")",countSelbstlaute( "BANANEN sind besonders gesund"));
+        System.out.println();
+        printArray("charStatistik",charStatistik("Fünf mal Zwölf = 5 * 12 = 60"));
     }
 
     public static boolean contains(int[] a, int search) {
@@ -273,7 +281,7 @@ public class Main {
         int[] rInt = new int[a.length];
         int counter = 0;
         for (int j : a) {
-            if (!contains(rInt, j)) {9y
+            if (!contains(rInt, j)) {
                 rInt[counter] = j;
                 counter++;
             }
@@ -320,7 +328,7 @@ public class Main {
         }
         int[] rInt = new int[k];
         int counter = 0;
-        for (int i = 0; i < k; i++) {
+        for (int i = 1; i < k; i++) {
             if (isPrime(i)) {
                 rInt[counter] = i;
                 counter++;
@@ -329,13 +337,134 @@ public class Main {
         return rInt;
     }
 
-  /*  public static int[] getPrimfaktoren(int n){
+    public static int[] getPrimfaktoren(int n){
         int[] p = getPrimesByBiggest((n/2)+1);
         int[] rInt = new int[n];
-        int counter
-        for (int i = 0; i < p.length; i++) {
-            if ()
+        int counter = 0;
+        int i = 0;
+        while (n>1){
+            if (n%p[counter]==0){
+                rInt[i]=p[counter];
+                i++;
+                n/=p[counter];
+            }else{
+                counter++;
+            }
+
+
+        } int len = indexOf(rInt,0);
+        return resize(rInt,len);
+    }
+
+    public static int[] haeufigkeitenBeimWuerfeln(int anzWuerfel, int versuche){
+        int[] r = new int[1+6*anzWuerfel];
+        int min = 1;
+        int max = 6;
+
+        r[0] = anzWuerfel;
+        for (int i = 0; i < versuche ; i++) {
+            int rnNr = 0;
+            for(int j = 0; j < anzWuerfel; j++) {
+                rnNr += min + (int) ((max - min + 1) *Math.random());
+            }
+            r[rnNr]++;
         }
-    }*/
+
+        return r;
+    }
+
+
+    public static int[] wahrscheinlichkeitenBeimWuerfeln(int anzWuerfel, int versuche){
+        int[] a = haeufigkeitenBeimWuerfeln(anzWuerfel, versuche);
+        int[] r = new int[1+anzWuerfel*6];
+        r[0] = anzWuerfel;
+
+        for (int i = 1; i < r.length; i++) {
+            double j = 1;
+            j*= ((double) a[i])/((double) versuche);
+            j *= 1000;
+            r[i] = doubleToIntApro(j);
+        }
+
+        return r;
+    }
+
+    public static int doubleToIntApro(double d){
+        int r;
+
+        if((d - (int) d) < 0.5){
+            r = (int) d;
+        }else{
+            r = (int) d + 1;
+        }
+
+        return r;
+    }
+
+    public static void printArray(String msg, String[] a){
+        StringBuilder s = new StringBuilder();
+
+        for (int i = 0; i < a.length; i++) {
+            s.append(a[i]);
+            if (i < a.length - 1) {
+                s.append(", ");
+            }
+        }
+        System.out.println(msg + "{" + s + "}");
+
+    }
+
+    public static int[] countSelbstlaute(String text){
+        int[] counter = new int[5];
+        for (int i = 0; i < text.length(); i++) {
+            switch (text.charAt(i)) {
+                case 'a', 'A' -> counter[0]++;
+                case 'e', 'E' -> counter[1]++;
+                case 'i', 'I' -> counter[2]++;
+                case 'o', 'O' -> counter[3]++;
+                case 'u', 'U' -> counter[4]++;
+            }
+        }
+        return counter;
+
+    }
+    public static int isSelbstlautOrUmlautOrMitlaut(char ch){
+
+
+        if (Character.isLetter(ch)){
+            if (ch=='a'||ch=='A'||ch=='e'||ch=='E'||ch=='i'||ch=='I'||ch=='o'||ch=='O'||ch=='u'||ch=='U'){
+                return 0;
+            }else if (ch=='ä'||ch=='Ä'||ch=='ö'||ch=='Ö'||ch=='ü'||ch=='Ü'){
+                return 1;
+            } else {
+                return 2;
+            }
+        }else {
+            return -1;
+        }
+
+    }
+
+
+    public static int[] charStatistik(String text){
+        int[] counter = new int[5];
+
+        for (int i = 0; i < text.length(); i++) {
+            if (isSelbstlautOrUmlautOrMitlaut(text.charAt(i))==0){
+                counter[0]++;
+            } else if (isSelbstlautOrUmlautOrMitlaut(text.charAt(i))==1) {
+                counter[1]++;
+            } else if (isSelbstlautOrUmlautOrMitlaut(text.charAt(i))==2) {
+                counter[2]++;
+            } else if (isSelbstlautOrUmlautOrMitlaut(text.charAt(i))==-1) {
+                if (Character.isDigit(text.charAt(i))){
+                    counter[3]++;
+                }else {
+                    counter[4]++;
+                }
+            }
+
+        }return counter;
+    }
 
 }
