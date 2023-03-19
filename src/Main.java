@@ -426,8 +426,8 @@ public class Main {
             }
         }
         return counter;
-
     }
+
     public static int isSelbstlautOrUmlautOrMitlaut(char ch){
 
 
