@@ -1,4 +1,6 @@
 import java.util.Arrays;
+import java.util.*;
+//Linus Freistetter 1CI
 
 public class Main {
     public static void main(String[] args) {
@@ -59,8 +61,23 @@ public class Main {
         printArray("countSelbstLuate(: \"BANANEN sind besonders gesund\")",countSelbstlaute( "BANANEN sind besonders gesund"));
         System.out.println();
         printArray("charStatistik",charStatistik("Fünf mal Zwölf = 5 * 12 = 60"));
+        System.out.println();
+        String[] s = {"peter", "Anna", "OTTO", "eMIL"};
+        printArray("Unsortiertes Array: " ,s);
+        sortIgnoreCase(s);
+        printArray("Sortiertes Array: " , s);
+        System.out.println();
+        printArray("towordarray",toWordArray("Hallo Welt, wie geht es dir?"));
+        System.out.println();
+        printArray("resize",resize(new String[]{"Eins", "Zwei", "Drei", "Vier"},2));
+        printArray("resize",resize(new String[]{"Eins", "Zwei", "Drei", "Vier"},6));
+        System.out.println();
+        printArray("extractnamesfromemail",extractEmailNames(new String[]{"Max.Mustermann@gmx.at", "otto@utanet.at", "martin@htl.rennweg.at","hansseppl"}));
+        System.out.println();
+        printArray("getindicies",getIndicies("BANANAS, Anakonda", "ana"));
+        System.out.println();
+        printArray("getwordsstartswith",getWordsStartsWith("Hast du GESTERN gelernt?", "ge"));
     }
-
     public static boolean contains(int[] a, int search) {
         for (int j : a) {
             if (j == search) {
@@ -407,10 +424,10 @@ public class Main {
         for (int i = 0; i < a.length; i++) {
             s.append(a[i]);
             if (i < a.length - 1) {
-                s.append(", ");
+                s.append("\", \"");
             }
         }
-        System.out.println(msg + "{" + s + "}");
+        System.out.println(msg + "{\"" + s + "\"}");
 
     }
 
@@ -466,5 +483,96 @@ public class Main {
 
         }return counter;
     }
+    public static String[] resize(String[] a, int newLength) {
+        String[] rInts = new String[newLength];
+        for (int i = 0; i < newLength; i++) {
+            if (i >= a.length) {
+                rInts[i] = "";
+            } else {
+                rInts[i] = a[i];
+            }
+        }
+        return rInts;
+    }
 
+
+    public static void sortIgnoreCase(String[] s) {
+        for (int i = 1; i < s.length; i++) {
+            String key = s[i];
+            int j = i - 1;
+            while (j >= 0 && s[j].compareToIgnoreCase(key) > 0) {
+                s[j + 1] = s[j];
+                j--;
+            }
+            s[j + 1] = key;
+        }
+    }
+
+    public static String[] toWordArray(String text) { //Arraylist um resize nicht zu verwenden und weil ich es cool finde
+        List<String> words = new ArrayList<>();
+        StringBuilder sb = new StringBuilder();
+        for (char c : text.toCharArray()) {
+            if (Character.isLetter(c)) {
+                sb.append(c);
+            } else {
+                if (sb.length() > 0) {
+                    words.add(sb.toString());
+                    sb.setLength(0);
+                }
+            }
+        }
+        if (sb.length() > 0) {
+            words.add(sb.toString());
+        }
+        return words.toArray(new String[words.size()]);
+    }
+
+
+    public static String[] extractEmailNames(String[] emailAddresses){
+        List<String> names = new ArrayList<>();             //ich weigere mich wieder resize zu verwenden
+        for (String emailAddress : emailAddresses) {
+            if (emailAddress.contains("@")) {
+                String[] parts = emailAddress.split("@");
+                names.add(parts[0]);
+            }
+        }
+        return names.toArray(new String[names.size()]);
+    }
+
+
+    public static int[] getIndicies(String s, String find){
+        List<Integer> stellen = new ArrayList<>();
+        s=s.toLowerCase();
+        find=find.toLowerCase();
+        for (int i = 0; i < s.length()-find.length(); i++) {
+            if (s.substring(i,i+find.length()).equals(find)){
+                stellen.add(i);
+            }
+        }
+        int[] rInt = new int[stellen.size()];
+        for (int i = 0; i < stellen.size(); i++)
+
+        {
+            rInt[i] = stellen.get(i);
+        }
+        return rInt;
+    }
+
+    public static String[] getWordsStartsWith(String text, String start){
+        String[] toCompare = toWordArray(text);
+        List<String> rStrings = new ArrayList<>();
+        for (String s : toCompare) {
+            if (s.toLowerCase().startsWith(start.toLowerCase())) {
+                rStrings.add(s);
+            }
+        }
+
+        return rStrings.toArray(new String[rStrings.size()]);
+    }
+
+    public static String[] extractIntervalls(String s){
+        List<String> allIntervals = new ArrayList<>();
+
+        return allIntervals.toArray(new String[allIntervals.size()]);
+    }
 }
