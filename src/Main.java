@@ -549,13 +549,8 @@ public class Main {
                 stellen.add(i);
             }
         }
-        int[] rInt = new int[stellen.size()];
-        for (int i = 0; i < stellen.size(); i++)
 
-        {
-            rInt[i] = stellen.get(i);
-        }
-        return rInt;
+        return stellen.stream().mapToInt(i -> i).toArray();
     }
 
     public static String[] getWordsStartsWith(String text, String start){
