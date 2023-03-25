@@ -54,30 +54,32 @@ public class Main {
         printArray("aOhneDoppelte = ", aOhneDoppelte);
         printArray("getprimes5", getPrimes(5));
         System.out.println();
-        printArray("getPrimfaktoren von 2000",getPrimfaktoren(2000));
+        printArray("getPrimfaktoren von 2000", getPrimfaktoren(2000));
         System.out.println();
-        String[] hallo = {"hallo","hallo","hallo","hallo","hallo"};
-        printArray("hallo:",hallo);
-        printArray("countSelbstLuate(: \"BANANEN sind besonders gesund\")",countSelbstlaute( "BANANEN sind besonders gesund"));
+        String[] hallo = {"hallo", "hallo", "hallo", "hallo", "hallo"};
+        printArray("hallo:", hallo);
+        printArray("countSelbstLuate(: \"BANANEN sind besonders gesund\")", countSelbstlaute("BANANEN sind besonders gesund"));
         System.out.println();
-        printArray("charStatistik",charStatistik("Fünf mal Zwölf = 5 * 12 = 60"));
+        printArray("charStatistik", charStatistik("Fünf mal Zwölf = 5 * 12 = 60"));
         System.out.println();
         String[] s = {"peter", "Anna", "OTTO", "eMIL"};
-        printArray("Unsortiertes Array: " ,s);
+        printArray("Unsortiertes Array: ", s);
         sortIgnoreCase(s);
-        printArray("Sortiertes Array: " , s);
+        printArray("Sortiertes Array: ", s);
         System.out.println();
-        printArray("towordarray",toWordArray("Hallo Welt, wie geht es dir?"));
+        printArray("towordarray", toWordArray("Hallo Welt, wie geht es dir?"));
         System.out.println();
-        printArray("resize",resize(new String[]{"Eins", "Zwei", "Drei", "Vier"},2));
-        printArray("resize",resize(new String[]{"Eins", "Zwei", "Drei", "Vier"},6));
+        printArray("resize", resize(new String[]{"Eins", "Zwei", "Drei", "Vier"}, 2));
+        printArray("resize", resize(new String[]{"Eins", "Zwei", "Drei", "Vier"}, 6));
         System.out.println();
-        printArray("extractnamesfromemail",extractEmailNames(new String[]{"Max.Mustermann@gmx.at", "otto@utanet.at", "martin@htl.rennweg.at","hansseppl"}));
+        printArray("extractnamesfromemail", extractEmailNames(new String[]{"Max.Mustermann@gmx.at", "otto@utanet.at", "martin@htl.rennweg.at", "hansseppl"}));
         System.out.println();
-        printArray("getindicies",getIndicies("BANANAS, Anakonda", "ana"));
+        printArray("getindicies", getIndicies("BANANAS, Anakonda", "ana"));
         System.out.println();
-        printArray("getwordsstartswith",getWordsStartsWith("Hast du GESTERN gelernt?", "ge"));
+        printArray("getwordsstartswith", getWordsStartsWith("Hast du GESTERN gelernt?", "ge"));
+        printArray("extractIntervals", extractIntervalls("1. Interv.:[1, 5[, 2. Interv.: ]von, bis[, unvollst. mit nur einer Klammer: [1,9"));
     }
+
     public static boolean contains(int[] a, int search) {
         for (int j : a) {
             if (j == search) {
@@ -259,7 +261,7 @@ public class Main {
         FIRST_LOOP:
         for (int bOffset = 0; bOffset < aLen; bOffset++) {
             for (int i = 0; i < aLen; i++) {
-                if (a[i] != b[(i+bOffset) % aLen]) {
+                if (a[i] != b[(i + bOffset) % aLen]) {
                     continue FIRST_LOOP;
                 }
             }
@@ -269,18 +271,18 @@ public class Main {
     }
 
 
-    public static void swap(int[] a, int i, int j){
+    public static void swap(int[] a, int i, int j) {
         int intBeiI = a[i];
         int intBeiJ = a[j];
-        a[i]= intBeiJ;
-        a[j]= intBeiI;
+        a[i] = intBeiJ;
+        a[j] = intBeiI;
     }
 
-    public static int indexOfLargestElement(int[] a, int startPos){
+    public static int indexOfLargestElement(int[] a, int startPos) {
         int rInt = a[0];
         for (int i = 0; i < startPos; i++) {
-            if (a[i]>rInt){
-                rInt=a[i];
+            if (a[i] > rInt) {
+                rInt = a[i];
             }
         }
         return rInt;
@@ -354,35 +356,36 @@ public class Main {
         return rInt;
     }
 
-    public static int[] getPrimfaktoren(int n){
-        int[] p = getPrimesByBiggest((n/2)+1);
+    public static int[] getPrimfaktoren(int n) {
+        int[] p = getPrimesByBiggest((n / 2) + 1);
         int[] rInt = new int[n];
         int counter = 0;
         int i = 0;
-        while (n>1){
-            if (n%p[counter]==0){
-                rInt[i]=p[counter];
+        while (n > 1) {
+            if (n % p[counter] == 0) {
+                rInt[i] = p[counter];
                 i++;
-                n/=p[counter];
-            }else{
+                n /= p[counter];
+            } else {
                 counter++;
             }
 
 
-        } int len = indexOf(rInt,0);
-        return resize(rInt,len);
+        }
+        int len = indexOf(rInt, 0);
+        return resize(rInt, len);
     }
 
-    public static int[] haeufigkeitenBeimWuerfeln(int anzWuerfel, int versuche){
-        int[] r = new int[1+6*anzWuerfel];
+    public static int[] haeufigkeitenBeimWuerfeln(int anzWuerfel, int versuche) {
+        int[] r = new int[1 + 6 * anzWuerfel];
         int min = 1;
         int max = 6;
 
         r[0] = anzWuerfel;
-        for (int i = 0; i < versuche ; i++) {
+        for (int i = 0; i < versuche; i++) {
             int rnNr = 0;
-            for(int j = 0; j < anzWuerfel; j++) {
-                rnNr += min + (int) ((max - min + 1) *Math.random());
+            for (int j = 0; j < anzWuerfel; j++) {
+                rnNr += min + (int) ((max - min + 1) * Math.random());
             }
             r[rnNr]++;
         }
@@ -391,14 +394,14 @@ public class Main {
     }
 
 
-    public static int[] wahrscheinlichkeitenBeimWuerfeln(int anzWuerfel, int versuche){
+    public static int[] wahrscheinlichkeitenBeimWuerfeln(int anzWuerfel, int versuche) {
         int[] a = haeufigkeitenBeimWuerfeln(anzWuerfel, versuche);
-        int[] r = new int[1+anzWuerfel*6];
+        int[] r = new int[1 + anzWuerfel * 6];
         r[0] = anzWuerfel;
 
         for (int i = 1; i < r.length; i++) {
             double j = 1;
-            j*= ((double) a[i])/((double) versuche);
+            j *= ((double) a[i]) / ((double) versuche);
             j *= 1000;
             r[i] = doubleToIntApro(j);
         }
@@ -406,19 +409,19 @@ public class Main {
         return r;
     }
 
-    public static int doubleToIntApro(double d){
+    public static int doubleToIntApro(double d) {
         int r;
 
-        if((d - (int) d) < 0.5){
+        if ((d - (int) d) < 0.5) {
             r = (int) d;
-        }else{
+        } else {
             r = (int) d + 1;
         }
 
         return r;
     }
 
-    public static void printArray(String msg, String[] a){
+    public static void printArray(String msg, String[] a) {
         StringBuilder s = new StringBuilder();
 
         for (int i = 0; i < a.length; i++) {
@@ -431,7 +434,7 @@ public class Main {
 
     }
 
-    public static int[] countSelbstlaute(String text){
+    public static int[] countSelbstlaute(String text) {
         int[] counter = new int[5];
         for (int i = 0; i < text.length(); i++) {
             switch (text.charAt(i)) {
@@ -445,44 +448,46 @@ public class Main {
         return counter;
     }
 
-    public static int isSelbstlautOrUmlautOrMitlaut(char ch){
+    public static int isSelbstlautOrUmlautOrMitlaut(char ch) {
 
 
-        if (Character.isLetter(ch)){
-            if (ch=='a'||ch=='A'||ch=='e'||ch=='E'||ch=='i'||ch=='I'||ch=='o'||ch=='O'||ch=='u'||ch=='U'){
+        if (Character.isLetter(ch)) {
+            if (ch == 'a' || ch == 'A' || ch == 'e' || ch == 'E' || ch == 'i' || ch == 'I' || ch == 'o' || ch == 'O' || ch == 'u' || ch == 'U') {
                 return 0;
-            }else if (ch=='ä'||ch=='Ä'||ch=='ö'||ch=='Ö'||ch=='ü'||ch=='Ü'){
+            } else if (ch == 'ä' || ch == 'Ä' || ch == 'ö' || ch == 'Ö' || ch == 'ü' || ch == 'Ü') {
                 return 1;
             } else {
                 return 2;
             }
-        }else {
+        } else {
             return -1;
         }
 
     }
 
 
-    public static int[] charStatistik(String text){
+    public static int[] charStatistik(String text) {
         int[] counter = new int[5];
 
         for (int i = 0; i < text.length(); i++) {
-            if (isSelbstlautOrUmlautOrMitlaut(text.charAt(i))==0){
+            if (isSelbstlautOrUmlautOrMitlaut(text.charAt(i)) == 0) {
                 counter[0]++;
-            } else if (isSelbstlautOrUmlautOrMitlaut(text.charAt(i))==1) {
+            } else if (isSelbstlautOrUmlautOrMitlaut(text.charAt(i)) == 1) {
                 counter[1]++;
-            } else if (isSelbstlautOrUmlautOrMitlaut(text.charAt(i))==2) {
+            } else if (isSelbstlautOrUmlautOrMitlaut(text.charAt(i)) == 2) {
                 counter[2]++;
-            } else if (isSelbstlautOrUmlautOrMitlaut(text.charAt(i))==-1) {
-                if (Character.isDigit(text.charAt(i))){
+            } else if (isSelbstlautOrUmlautOrMitlaut(text.charAt(i)) == -1) {
+                if (Character.isDigit(text.charAt(i))) {
                     counter[3]++;
-                }else {
+                } else {
                     counter[4]++;
                 }
             }
 
-        }return counter;
+        }
+        return counter;
     }
+
     public static String[] resize(String[] a, int newLength) {
         String[] rInts = new String[newLength];
         for (int i = 0; i < newLength; i++) {
@@ -528,7 +533,7 @@ public class Main {
     }
 
 
-    public static String[] extractEmailNames(String[] emailAddresses){
+    public static String[] extractEmailNames(String[] emailAddresses) {
         List<String> names = new ArrayList<>();             //ich weigere mich wieder resize zu verwenden
         for (String emailAddress : emailAddresses) {
             if (emailAddress.contains("@")) {
@@ -540,12 +545,12 @@ public class Main {
     }
 
 
-    public static int[] getIndicies(String s, String find){
+    public static int[] getIndicies(String s, String find) {
         List<Integer> stellen = new ArrayList<>();
-        s=s.toLowerCase();
-        find=find.toLowerCase();
-        for (int i = 0; i < s.length()-find.length(); i++) {
-            if (s.substring(i,i+find.length()).equals(find)){
+        s = s.toLowerCase();
+        find = find.toLowerCase();
+        for (int i = 0; i < s.length() - find.length(); i++) {
+            if (s.substring(i, i + find.length()).equals(find)) {
                 stellen.add(i);
             }
         }
@@ -553,7 +558,7 @@ public class Main {
         return stellen.stream().mapToInt(i -> i).toArray();
     }
 
-    public static String[] getWordsStartsWith(String text, String start){
+    public static String[] getWordsStartsWith(String text, String start) {
         String[] toCompare = toWordArray(text);
         List<String> rStrings = new ArrayList<>();
         for (String s : toCompare) {
@@ -565,9 +570,28 @@ public class Main {
         return rStrings.toArray(new String[rStrings.size()]);
     }
 
-    public static String[] extractIntervalls(String s){
-        List<String> allIntervals = new ArrayList<>();
+    public static String[] extractIntervalls(String s) {
+        List<String> intervals = new ArrayList<>();
+        int start = 0;
+        boolean inInterval = false;
+        int openBrackets = 0;
 
-        return allIntervals.toArray(new String[allIntervals.size()]);
+        for (int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
+            if (c == '[' || c == ']') {
+                if (!inInterval) {
+                    inInterval = true;
+                    start = i;
+                } else {
+                    intervals.add(s.substring(start,i+1));
+                    inInterval=false;
+                }
+            }
+
+        }
+        return intervals.toArray(new String[0]);
     }
 }
+
+
+
