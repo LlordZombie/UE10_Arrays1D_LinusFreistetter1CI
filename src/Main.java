@@ -578,7 +578,7 @@ public class Main {
     }
 
     public static String[] extractIntervalls(String s) {
-        List<String> intervals = new ArrayList<>();
+        List<String> intervals = new ArrayList<>();//cock
         int start = 0;
         boolean inInterval = false;
         for (int i = 0; i < s.length(); i++) {
