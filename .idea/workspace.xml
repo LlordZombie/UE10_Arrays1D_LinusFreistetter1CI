@@ -49,8 +49,7 @@
       <workItem from="1677497592799" duration="1008000" />
       <workItem from="1677741293874" duration="1161000" />
       <workItem from="1677862972680" duration="401000" />
-      <workItem from="1679427601000" duration="1635000" />
-      <workItem from="1679738253771" duration="1987000" />
+      <workItem from="1679902000309" duration="756000" />
     </task>
     <task id="LOCAL-00001" summary="aufgabe eins und zwei uWu">
       <created>1677485161667</created>
@@ -80,14 +79,7 @@
       <option name="project" value="LOCAL" />
       <updated>1677499391045</updated>
     </task>
-    <task id="LOCAL-00005" summary="UwU">
-      <created>1679431429376</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1679431429376</updated>
-    </task>
-    <option name="localTasksCounter" value="6" />
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -107,7 +99,6 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="aufgabe eins und zwei uWu" />
     <MESSAGE value="UWUWUWUWU" />
-    <MESSAGE value="UwU" />
-    <option name="LAST_COMMIT_MESSAGE" value="UwU" />
+    <option name="LAST_COMMIT_MESSAGE" value="UWUWUWUWU" />
   </component>
 </project>

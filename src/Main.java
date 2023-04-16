@@ -1,5 +1,6 @@
+import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.*;
+import java.util.List;
 //Linus Freistetter 1CI
 
 public class Main {
@@ -78,6 +79,14 @@ public class Main {
         System.out.println();
         printArray("getwordsstartswith", getWordsStartsWith("Hast du GESTERN gelernt?", "ge"));
         printArray("extractIntervals", extractIntervalls("1. Interv.:[1, 5[, 2. Interv.: ]von, bis[, unvollst. mit nur einer Klammer: [1,9"));
+        System.out.println(equals(new char[]{'a', 'b'}, new char[]{'a', 'b'}));
+        System.out.println();
+        System.out.println("isRotatable(\"gerne\".toCharArray(),\"neger\".toCharArray()) = " + isRotatable("gerne".toCharArray(), "neger".toCharArray()));
+        System.out.println();
+        int[] a10 = {99, 7, 29, 18};
+        System.out.println("indexOfLargestElement(a10,1) = " + indexOfLargestElement(a10, 1));
+        System.out.println();
+        printArray("wahrscheinlichkeit beim wurfeln", wahrscheinlichkeitenBeimWuerfeln(2, 100));
     }
 
     public static boolean contains(int[] a, int search) {
@@ -529,7 +538,7 @@ public class Main {
         if (sb.length() > 0) {
             words.add(sb.toString());
         }
-        return words.toArray(new String[words.size()]);
+        return words.toArray(new String[0]);
     }
 
 
@@ -541,20 +550,19 @@ public class Main {
                 names.add(parts[0]);
             }
         }
-        return names.toArray(new String[names.size()]);
+        return names.toArray(new String[0]);
     }
 
 
     public static int[] getIndicies(String s, String find) {
-        List<Integer> stellen = new ArrayList<>();
+        List<Integer> stellen = new ArrayList<>();      //Arrays.copyof ist auch mist
         s = s.toLowerCase();
         find = find.toLowerCase();
         for (int i = 0; i < s.length() - find.length(); i++) {
-            if (s.substring(i, i + find.length()).equals(find)) {
+            if (s.startsWith(find, i)) {
                 stellen.add(i);
             }
         }
-
         return stellen.stream().mapToInt(i -> i).toArray();
     }
 
@@ -566,16 +574,13 @@ public class Main {
                 rStrings.add(s);
             }
         }
-
-        return rStrings.toArray(new String[rStrings.size()]);
+        return rStrings.toArray(new String[0]);
     }
 
     public static String[] extractIntervalls(String s) {
         List<String> intervals = new ArrayList<>();
         int start = 0;
         boolean inInterval = false;
-        int openBrackets = 0;
-
         for (int i = 0; i < s.length(); i++) {
             char c = s.charAt(i);
             if (c == '[' || c == ']') {
@@ -583,8 +588,8 @@ public class Main {
                     inInterval = true;
                     start = i;
                 } else {
-                    intervals.add(s.substring(start,i+1));
-                    inInterval=false;
+                    intervals.add(s.substring(start, i + 1));
+                    inInterval = false;
                 }
             }
 
@@ -592,6 +597,3 @@ public class Main {
         return intervals.toArray(new String[0]);
     }
 }
-
-
-
